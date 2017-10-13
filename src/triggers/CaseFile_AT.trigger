@@ -11,8 +11,7 @@ trigger CaseFile_AT on cg__CaseFile__c (before insert,after insert) {
         
         for(cg__CaseFile__c cseFile : Trigger.new) {
             newFileMap.put(cseFile.Id, cseFile);
-            caseId.add(cseFile.cg__Case__c);
-        }
+            caseId.add(cseFile.
         
         if(caseId.size() > 0) {
             for(cg__CaseFile__c caseFile : [SELECT Id, cg__Content_Type__c, cg__File_Name__c, cg__Case__c, cg__Case__r.CaseNumber, cg__Parent_Folder_Id__c FROM cg__CaseFile__c WHERE cg__Case__c IN : caseId AND cg__Content_Type__c = 'Folder']) {
